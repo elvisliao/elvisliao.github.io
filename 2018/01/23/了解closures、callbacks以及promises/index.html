@@ -28,7 +28,7 @@
     <!--Title-->
 
 
-<title>Javascript | Elvis&#39;s tech notes | 筆記小本本</title>
+<title>了解closure、callback以及promise(1) | Elvis&#39;s tech notes | 筆記小本本</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Elvis&#39;s tech notes | 筆記小本本" type="application/atom+xml">
@@ -119,17 +119,89 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div class="about">
-	
-	    <article class="post">
-	        <h1 class="post-head">关于我</h1>
-	        <div class="post-body">
-	            
-	        </div>
-	    </article>
-	
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="了解closure、callback以及promise(1)">
+            
+	            了解closure、callback以及promise(1)
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>Javascript</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            hexo
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/01/23</span>
+    </span>
 </div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>本來想要把這三個感覺起來類似的東西寫在一起，但發現我實在太囉嗦了，實在很難一言兩語來解釋完，所以分篇介紹。</p>
+<p>相信或多或少都會看到closure、callback以及promise，這些名詞，也是在面試過程中常會被考到的題目，可以說是測驗懂不懂Javascript這個語言的一個小小分水嶺，沒使用、沒熟讀過的馬上腦帶就一片空白。</p>
+<hr>
+<h1 id="closure-閉包"><a href="#closure-閉包" class="headerlink" title="closure(閉包)"></a>closure(閉包)</h1><p>首先，先看一下在<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">MDN</a>上面的解釋：</p>
+<blockquote>
+<p>閉包（Closure）是函式的組合，以及該宣告函式所包含的作用域環境（lexical environment）。</p>
+</blockquote>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function init() &#123;</span><br><span class="line">      var name = &quot;Mozilla&quot;; // name 是個由 init 建立的局部變數</span><br><span class="line">      function displayName() &#123; // displayName() 是內部函式，一個閉包</span><br><span class="line">        alert(name); // 使用了父函式宣告的變數</span><br><span class="line">      &#125;</span><br><span class="line">      displayName();</span><br><span class="line">&#125;</span><br><span class="line">init();</span><br></pre></td></tr></table></figure>
+<p>init() 建立了局部變數 name 與 displayName() 函式。displayName() 是個在 init() 內定義的內部函式，且只在該函式內做動。displayName() 自己並沒有局部變數，不過它可以訪問外面函式的變數、因而能取用在父函式宣告的變數 name。</p>
+<p>好，我還是白話一點好了。</p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                轉載聲明：商業轉載請聯繫作者獲得授權,非商業轉載請註明出處 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/01/22/利用HEXO架設專屬自己的BLOG/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>評論系統未開啟，無法評論！</p>
+
+    </div>
+
+
+
+
+
                 </main>
                 
     <aside class="col-md-4 sidebar">
