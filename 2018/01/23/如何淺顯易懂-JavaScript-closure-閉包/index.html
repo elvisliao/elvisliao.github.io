@@ -158,7 +158,7 @@
     </div>
     
     <div class="post-body post-content">
-        <p>相信或多或少都會看到這個名詞，我也是在某次面試過程中被考到closure，然後就似懂非懂只知道很多function包在一起，沒有在使用、沒熟讀過，可想而知腦帶就一片空白。<br>現在就一口氣把它給弄個清楚，相關的資料結構還有Callback、Promise等，等我整理完文章再全部發上來。</p>
+        <p>相信或多或少都會看到這個名詞，我也是在某次面試過程中考到closure，然後似懂非懂只知道很多function包在一起，沒有在使用、沒熟讀過，可想而知腦袋就一片空白。<br>現在就一口氣把它給弄個清楚，相關的資料結構還有Callback、Promise等，等我整理完文章再全部發上來。</p>
 <hr>
 <h1 id="closure-閉包-定義"><a href="#closure-閉包-定義" class="headerlink" title="closure(閉包)定義"></a>closure(閉包)定義</h1><p>首先，先看一下在<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">MDN</a>上面的解釋：</p>
 <blockquote>
@@ -166,7 +166,9 @@
 </blockquote>
 <p>例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function init() &#123;</span><br><span class="line">      var name = &quot;Mozilla&quot;; // name 是個由 init 建立的局部變數</span><br><span class="line">      function displayName() &#123; // displayName() 是內部函式，一個閉包</span><br><span class="line">        alert(name); // 使用了父函式宣告的變數</span><br><span class="line">      &#125;</span><br><span class="line">      displayName();</span><br><span class="line">&#125;</span><br><span class="line">init();</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>init() 建立了局部變數 name 與 displayName() 函式。displayName() 是個在 init() 內定義的內部函式，且只在該函式內做動。displayName() 自己並沒有局部變數，不過它可以訪問外面函式的變數、因而能取用在父函式宣告的變數 name。</p>
+</blockquote>
 <p>好，我還是白話一點好了。</p>
 <p>JavaScript函式可以像一般的數值那樣的使用，可以在變數、物件或陣列中儲存，也可以傳入到另外的函式裡當參數、當回傳值回傳。</p>
 <p>而依照函式作用域的連鎖規則，內部函式可以看到、讀取到外部函式，而形成一個Scope Chain(作用域連鎖)，所以內部函式可以有三個作用域：</p>
@@ -191,7 +193,7 @@
 </ol>
 <h1 id="常用實例"><a href="#常用實例" class="headerlink" title="常用實例"></a>常用實例</h1><p>常用實例首先就是上述講的避免在使用全域變數的地方上，第二點就是使用在迴圈賦值上。<br>不知道你有沒有那個經驗，有時候在一個迴圈賦值的時候一直給不上去，每次都存到了迴圈的最後一筆資料？<br>原因就是如果迴圈中有了異步回調，那它會先移到工作佇列中準備執行異部處理(setTimeout、AJAX等)，等它回來主執行緒執行時，迴圈早就跳出執行了，而且i還已經跑到了最後一個，所以接下來執行的動作，能獲取到的值全部都是錯的。<br>這時候如果使用closure的話，可以在迴圈每跑一次就執行一次的closure函式，將值記錄在裡面並且輸出，可以確保程式不會亂掉。</p>
 <p>至於實際的範例可以參考這邊：<a href="http://jsbin.com/lecinib/edit?js,console,output" target="_blank" rel="noopener">JSbin</a></p>
-<h1 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h1><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">閉包- JavaScript | MDN</a><br><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html" target="_blank" rel="noopener">從ES6開始的JavaScript學習生活</a><br><a href="https://pjchender.blogspot.tw/2017/05/javascript-closure.html" target="_blank" rel="noopener">深入淺出瞭解 JavaScript 閉包（closure）</a><br><a href="http://blog.darkthread.net/post-2009-03-11-js-this-and-closure.aspx" target="_blank" rel="noopener">Javascript - 淺談this與Closure</a></p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">閉包- JavaScript | MDN</a><br><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html" target="_blank" rel="noopener">從ES6開始的JavaScript學習生活</a><br><a href="https://pjchender.blogspot.tw/2017/05/javascript-closure.html" target="_blank" rel="noopener">深入淺出瞭解 JavaScript 閉包（closure）</a><br><a href="http://blog.darkthread.net/post-2009-03-11-js-this-and-closure.aspx" target="_blank" rel="noopener">Javascript - 淺談this與Closure</a></p>
 
     </div>
 
