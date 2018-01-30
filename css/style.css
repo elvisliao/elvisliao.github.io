@@ -676,7 +676,7 @@ pre {
   overflow: auto;
   line-height: 1.5;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  color: #808080;
+  color: #d8d8d8;
   background-color: #f9f9f9;
 }
 .post-content pre code {
@@ -1038,7 +1038,7 @@ pre,
   padding: 0;
   color: #c5c8c6;
   font-size: 13px;
-  background: #1d1f21;
+  background: #2d2d2d;
   line-height: 1.6;
 }
 code {
@@ -1099,15 +1099,15 @@ pre .comment {
 .highlight .gutter pre {
   padding-left: 10px;
   padding-right: 10px;
-  color: #888f96;
+  color: #a0a0a0;
   text-align: right;
-  background-color: #000;
+  background-color: #171616;
 }
 .highlight .code pre {
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #1d1f21;
+  /*background-color: #1d1f21;*/
 }
 .highlight .line {
   height: 20px;
