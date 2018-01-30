@@ -141,7 +141,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            Javascript
+            Callback
             
         </span>
     </span>
@@ -158,54 +158,24 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="Callback-回調"><a href="#Callback-回調" class="headerlink" title="Callback(回調)"></a>Callback(回調)<a href="#callback回調"></a></h1><h2 id="Callback-回調-是什麼？"><a href="#Callback-回調-是什麼？" class="headerlink" title="Callback(回調)是什麼？"></a>Callback(回調)是什麼？<a href="#callback回調是什麼？"></a></h2><p>中文翻譯字詞會用”回呼””、”回叫”、”回調”，都是聽起來很怪異的講法，Callback在英文是”call back”兩個單字的合體，你應該有聽過”Call me back”的英文，實際情況大概是有客戶打來電話給你，可是你正在電話中，客戶會留話說請你等會有空時再”回電”給它，這裡的說法是指在電信公司裡的callback的涵意。而在程式開發上上，callback它的使用情境其實也是有類似的地方。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
+        <h2 id="Callback-回調-是什麼？"><a href="#Callback-回調-是什麼？" class="headerlink" title="Callback(回調)是什麼？"></a>Callback(回調)是什麼？<a href="#callback回調是什麼？"></a></h2><p>中文翻譯字詞會用”回呼””、”回叫”、”回調”，都是聽起來很怪異的講法，Callback在英文是”call back”兩個單字的合體，你應該有聽過”Call me back”的英文，實際情況大概是有客戶打來電話給你，可是你正在電話中，客戶會留話說請你等會有空時再”回電”給它，這裡的說法是指在電信公司裡的callback的涵意。而在程式開發上上，callback它的使用情境其實也是有類似的地方。</p>
 <h2 id="CPS風格與直接風格"><a href="#CPS風格與直接風格" class="headerlink" title="CPS風格與直接風格"></a>CPS風格與直接風格<a href="#cps風格與直接風格"></a></h2><p>延續傳遞風格(Continuation-passing style, CPS)，它的對比是”直接風格(Direct style)”，這兩種是程式開發時所使用的風格，CPS早在1970年代就已經被提出來了。CPS用的是明確地移轉控制權到下一個函式中，也就是使用”延續函式”的方式，一般稱它為”回調函式”或”回調(Callback)”。回調是一個可以作為傳入參數的函式，用於在目前的函式呼叫執行最後移交控制權，而不使用函式回傳值的方式。直接風格的控制權移交是不明確的，它是用回傳值的方式，然後進行到下一行程式碼或呼叫接下來其他函式。下面以範例來說明會比較容易。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p>直接風格的範例如下，其實就是一般函式呼叫的方式，或是用回傳的方式:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接風格</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span><span class="params">(x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>CPS風格就不是這樣，它會用另一個函式作為函式中的傳入參數的樣式來撰寫程式，然後將本來應該要回傳的值(不限定只有一個)，傳給下一個延續函式，繼續下個函式的執行:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//CPS風格</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span><span class="params">(x, cb)</span> </span>&#123;</span><br><span class="line">  cb(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以明確的程式流程的例子來說，假設現在要從資料庫獲取某個會員的資料，然後把裡面的大頭照片輸出。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p>用直接風格的寫法:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAvatar</span>(<span class="params">user</span>)</span>&#123;</span><br><span class="line">   <span class="comment">//...一些程式碼</span></span><br><span class="line">   <span class="keyword">return</span> avatar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">avatar</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(avatar)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> avatar = getAvatar(<span class="string">'eddy'</span>)</span><br><span class="line">display(avatar)</span><br></pre></td></tr></table></figure>
 <p>用CPS風格的寫法，像下面這樣:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAvatar</span>(<span class="params">user, cb</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//...一些程式碼</span></span><br><span class="line">   cb(avatar)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">avatar</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(avatar)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getAvatar(<span class="string">'eddy'</span>, display)</span><br></pre></td></tr></table></figure>
 <p>長久以來在程式語言開發界，直接風格的程式碼是最常被使用的，因為它容易被學習與理解，一個步驟接著一個步驟，學校的程式語言課程大部份也是用這種風格來教學，不論在個人電腦上的、在伺服器端的程式語言設計通常也是這樣。主要是因為個人電腦端或是伺服器端，通常使用多執行緒或改進底層運作的執行方式，來解決多工或並行的問題。CPS風格反而很少被使用，並沒有明顯的誘因讓程式設計師一定要用CPS風格，而且也不是所有的程式語言都能使用CPS風格，在過去CPS風格並不算是主流的程式開發寫作風格。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p>CPS風格相較於直接風格還有一些明顯的缺點:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <ul>
 <li>在愈複雜的應用情況時，程式碼愈不易撰寫與組織，維護性與閱讀性也很低</li>
 <li>在錯誤處理上較為困難</li>
 </ul>
 <p>JavaScript中會大量使用CPS風格，除了它本身可以使用這種風格外，其實是有原因:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <ul>
 <li>只有單執行緒，在瀏覽器端只有一個使用者，但事件或網路要求(AJAX)要求不能阻塞其他程式的進行，但這也僅限在這些特殊的情況。不過在伺服器端的執行情況都很嚴峻，要能同時讓多人連線使用，必需要達到不能阻塞I/O，才能與以多執行緒執行的伺服器一樣的執行效益。</li>
 <li>一開始就是以CPS風格來設計事件異步處理的模型，用於配合異步回調函式的執行使用。</li>
@@ -217,9 +187,6 @@
 <p></p></div><p></p>
 </blockquote>
 <h2 id="異步回調函式"><a href="#異步回調函式" class="headerlink" title="異步回調函式"></a>異步回調函式<a href="#異步回調函式"></a></h2><p>並非所有的使用callbacks(回調)函式的API都是異步執行的，但CPS的確是一種可以確保異步回調執行流程的風格。在JavaScript中，除了DOM事件處理中的回調函式9成9都是異步執行的，語言內建API中使用的回調函式不一定是異步執行的，也有同步執行的例如<code>Array.forEach</code>，要讓開發者自訂的callbacks(回調)的執行轉變為異步，有以下幾種方式:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <ul>
 <li>使用計時器(timer)函式: <code>setTimeout</code>, <code>setInterval</code></li>
 <li>特殊的函式: <code>nextTick</code>, <code>setImmediate</code></li>
@@ -227,38 +194,14 @@
 <li>訂閱事件</li>
 </ul>
 <p>針對callbacks(回調)函式來說，異步與同步的執行到底是差在那裡？你可能會產生疑惑。下面用個簡單的例子來說明。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span></span> aFunc(<span class="keyword">value</span>, callback)&#123;</span><br><span class="line">  callback(<span class="keyword">value</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span></span> bFunc(<span class="keyword">value</span>, callback)&#123;</span><br><span class="line">  setTimeout(callback, <span class="number">0</span>, <span class="keyword">value</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span></span> cb1(<span class="keyword">value</span>)&#123; console.<span class="built_in">log</span>(<span class="keyword">value</span>) &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span></span> cb2(<span class="keyword">value</span>)&#123; console.<span class="built_in">log</span>(<span class="keyword">value</span>) &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span></span> cb3(<span class="keyword">value</span>)&#123; console.<span class="built_in">log</span>(<span class="keyword">value</span>) &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span></span> cb4(<span class="keyword">value</span>)&#123; console.<span class="built_in">log</span>(<span class="keyword">value</span>) &#125;</span><br><span class="line"></span><br><span class="line">aFunc(<span class="number">1</span>, cb1)</span><br><span class="line">bFunc(<span class="number">2</span>, cb2)</span><br><span class="line">aFunc(<span class="number">3</span>, cb3)</span><br><span class="line">bFunc(<span class="number">4</span>, cb4)</span><br></pre></td></tr></table></figure>
 <p><code>aFunc</code>是一個簡單的回調結構，<code>callback</code>回調函式被傳入後最後以<code>value</code>作為傳入參數執行。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p><code>bFunc</code>函式則是包裹了一個<code>setTimeout</code>內建方法，它可以在一定時間內(第二個參數)執行第一個參數，也就是<code>setTimeout</code>會執行的回調函式，第三個參數是要加入到回調函式的傳入參數值。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p><code>aFunc</code>中使用了一般的回調函式，只是傳入到函式中當作參數，然後最後執行而已，這種是同步執行的回調函式，只是用了CPS風格的寫法。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p><code>bFunc</code>中使用了計時器API<code>setTimeout</code>會把傳入的回調函式進行異步執行，也就是先移到工作佇列中，等執行主執行緒的呼叫堆疊空了，在某個時間回到主執行緒再執行。所以即使它的時間設定為0秒，裡面的回調函式並不是立即執行，而是會暫緩(延時)執行的一種回調函式，一般稱為異步回調函式。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p>最後的執行結果是<code>1 -&gt; 3 -&gt; 2 -&gt; 4</code>，也就是說，所有的同步回調函式都執行完成了，才會開始依順序執行異步的回調函式。如果你在瀏覽器上測試這個程式，應該會明顯感受到，2與4的輸出時，會有點延遲的現象，這並不是你的瀏覽器或電腦的問題，這是因為不論你設定的<code>setTimeout</code>為0，它要回到主執行緒上執行，仍然需要按照內部事件迴圈所設定的時間差，在某個時間點才會回來執行。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p>這個程式執行的流程，可以看<a href="http://latentflip.com/loupe/?code=ZnVuY3Rpb24gYUZ1bmModmFsdWUsIGNiKXsKICBjYih2YWx1ZSk7Cn0KCmZ1bmN0aW9uIGJGdW5jKHZhbHVlLCBjYil7CiAgc2V0VGltZW91dChjYiwgMCwgdmFsdWUpOwp9CgpmdW5jdGlvbiBjYjEodmFsdWUpeyBjb25zb2xlLmxvZyh2YWx1ZSk7IH0KZnVuY3Rpb24gY2IyKHZhbHVlKXsgY29uc29sZS5sb2codmFsdWUpOyB9CmZ1bmN0aW9uIGNiMyh2YWx1ZSl7IGNvbnNvbGUubG9nKHZhbHVlKTsgfQpmdW5jdGlvbiBjYjQodmFsdWUpeyBjb25zb2xlLmxvZyh2YWx1ZSk7IH0KCmFGdW5jKDEsIGNiMSk7CmJGdW5jKDIsIGNiMik7CmFGdW5jKDMsIGNiMyk7CmJGdW5jKDQsIGNiNCk7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D" target="_blank" rel="noopener">這個在loupe網站的流程模擬</a>，輸出一樣在瀏覽器的主控台中可以看到。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p>由這個範例中，可以看到異步回調函式執行比同步回調函式更慢，異步回調函式還有另一個名稱是延時回調(defer callback)，是用延時執行特性來命名。這只是一種因應特別情況所採用的函式執行方式，例如需要與外部資源存取(I/O)、DOM事件處理或是計時器的情況。等待的時間則是在Web API中，等有外部資源有回應了(或超時)才會加到佇列中，佇列裡並不會執行函式中的程式碼，只是個準備排隊進入主執行緒的機制，函式一律在主執行緒中執行。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <blockquote>
 <p>關於函式的異步執行與事件迴圈一些原理的說明，請再參考[異步執行與事件迴圈]的章節裡的內容。</p>
 <div class="comments-icon"><br><br><div class="marker">+</div>
@@ -266,66 +209,30 @@
 <p></p></div><p></p>
 </blockquote>
 <h2 id="回調函式的複雜性"><a href="#回調函式的複雜性" class="headerlink" title="回調函式的複雜性"></a>回調函式的複雜性<a href="#回調函式的複雜性"></a></h2><p>callback(回調)運用在瀏覽器端似乎並沒有想像中複雜，一個事件的處理範例大概會像下面這樣:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'myButton'</span>)</span><br><span class="line"></span><br><span class="line">el.addEventListener( <span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">'hello!'</span>)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
 <p>你也可以把callback寫成另一個函式定義，看起來會更清楚:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">'hello!'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'myButton'</span>)</span><br><span class="line"></span><br><span class="line">el.addEventListener(<span class="string">'click'</span>, callback, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
 <p>AJAX是另一個常使用的情況，內建的<code>XMLHttpRequest</code>物件的行為類似於事件處理，而且都打包好好的。實際上<code>onreadystatechange</code>這個屬性，就是<code>XMLHttpRequest</code>物件在處理事件用的callback(回調)函式。以下為一個簡單的範例:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == XMLHttpRequest.DONE ) &#123;</span><br><span class="line">       <span class="keyword">if</span> (xhr.status == <span class="number">200</span>) &#123;</span><br><span class="line">           <span class="built_in">document</span>.getElementById(<span class="string">'myDiv'</span>).innerHTML = xhr.responseText</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (xhr.status == <span class="number">400</span>) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'There was an error 400'</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="string">'something else other than 200 was returned'</span>)</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">'GET'</span>, <span class="string">'ajax_info.txt'</span>, <span class="literal">true</span>)</span><br><span class="line">xhr.send()</span><br></pre></td></tr></table></figure>
 <h3 id="“匿名函式”、”函式定義”與”函式呼叫”的混合"><a href="#“匿名函式”、”函式定義”與”函式呼叫”的混合" class="headerlink" title="“匿名函式”、”函式定義”與”函式呼叫”的混合"></a>“匿名函式”、”函式定義”與”函式呼叫”的混合<a href="#匿名函式、函式定義與函式呼叫的混合"></a></h3><p>我會認為回調函式會複雜的原因是主要是來自”匿名函式”、”函式定義”與”函式呼叫”的混合寫法。所以當在看程式碼時，你的腦袋很容易打結。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function <span class="function"><span class="keyword">func</span><span class="params">(x, cb)</span>&#123;</span></span><br><span class="line">  cb(x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(<span class="number">123456</span>, function(value)</span>&#123;</span></span><br><span class="line">  console.<span class="built_in">log</span>(value)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>這例子很簡單，要分作幾個部份來看:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p>這是一個完整的”函式呼叫”，也就是說它是一個被執行的語句結構:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func(<span class="number">123456</span>, <span class="function"><span class="keyword">function</span><span class="params">(value)</span></span>&#123;</span><br><span class="line">  console.<span class="built_in">log</span>(<span class="keyword">value</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>但其中的這一段是什麼，這個是一個”函式定義”，而且還是個”匿名函式”定義，它是一個callback(回調)函式的定義，它代表了<code>func</code>函式執行完後要作的下一件事，這個定義是在<code>func</code>函式中的程式碼的最後一句被呼叫執行。:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span><span class="params">(value)</span></span>&#123;</span><br><span class="line">  console.<span class="built_in">log</span>(<span class="keyword">value</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>所以整個語法是代表”<strong>在函式呼叫時，要寫出下一個要執行的函式定義</strong>“，這就是常見回調函式的語法樣式。當然，你可以另外用一個函式來寫得更清楚:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function <span class="function"><span class="keyword">func</span><span class="params">(x, cb)</span>&#123;</span></span><br><span class="line">  cb(x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function callback(value)&#123;</span><br><span class="line">  console.<span class="built_in">log</span>(value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(<span class="number">123456</span>, callback)</span></span></span><br></pre></td></tr></table></figure>
 <p>不過，你可以發現幾件事情:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <ul>
 <li>callback(回調)的函式名稱，可以用匿名函式取代。(實際上callback的名稱在除錯時很有用，可以在錯誤的堆疊上指示出來)</li>
 <li>callback(回調)因為是函式的定義，所以傳入參數<code>value</code>的名稱叫什麼其實都可以。</li>
 <li>callback(回調)其實有Closure(閉包)結構的特性，可以獲取到<code>func</code>中的傳入參數，以及裡面的定義的值。(實際上JavaScript中只要函式建立就會有閉包產生)</li>
 </ul>
 <p>那麼要說到callback(回調)的最大優點，就是它給了程式開發者很大的彈性，允許開發者可以自訂下一個要執行函式的內容，等於說它可以提高函式的擴充性與重覆使用性。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <h3 id="回調地獄-Callback-Hell"><a href="#回調地獄-Callback-Hell" class="headerlink" title="回調地獄(Callback Hell)"></a>回調地獄(Callback Hell)<a href="#回調地獄callback-hell"></a></h3><p>複雜的情況是在於CPS風格使用callback(回調)來移往下一個函式執行，當你開始撰寫一個接著一個執行的流程，也就是一個特定工作的函式呼叫後要接下一個特定工作的函式時，就會看到所謂的”回調地獄”的結構，像下面這樣的例子:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">step1(x, <span class="function"><span class="keyword">function</span><span class="params">(value1)</span></span>&#123;</span><br><span class="line">  <span class="comment">//do something...</span></span><br><span class="line">  step2(y, <span class="function"><span class="keyword">function</span><span class="params">(value2)</span></span>&#123;</span><br><span class="line">    <span class="comment">//do something...</span></span><br><span class="line">    step3(z, <span class="function"><span class="keyword">function</span><span class="params">(value3)</span></span>&#123;</span><br><span class="line">        <span class="comment">//do something...</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>它的執行順序應該是<code>step1 -&gt; step2 -&gt; step3</code>沒錯，這三個都可能是已經寫好要作某件特定工作的函式。所以真正是這樣的流程嗎？你可能忘了匿名函式(callback)也是一個函式，所以執行的步驟是像下面這樣才對:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <ol>
 <li><code>step1</code>執行後，”value1”已經有值，移往<code>function(value1)</code>執行</li>
 <li><code>function(value1)</code>執行到<code>step2</code>，<code>step2</code>執行到最後，”value2”已經有值，移往<code>function(value2)</code>執行</li>
@@ -333,14 +240,8 @@
 <li><code>function(value3)</code>執行完成</li>
 </ol>
 <p>寫成流程大概是像下面這樣的順序，一共有6個函式要執行的流程，其中的這三個匿名回調函式的主要工作，是負責準備接續下一個要執行特定工作的函式:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">step1<span class="function"> -&gt;</span> <span class="keyword">function</span><span class="function"><span class="params">(value1)</span> -&gt;</span> step2<span class="function"> -&gt;</span> <span class="keyword">function</span><span class="function"><span class="params">(value2)</span> -&gt;</span> step3<span class="function"> -&gt;</span> <span class="keyword">function</span>(value3)</span><br></pre></td></tr></table></figure>
 <p>那為何為不使用直接風格？而一定要用這麼不易理解的程式流程結構。上面已經有講為什麼JavaScript中會大量的使用CPS的原因:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <blockquote>
 <p>因為有些I/O或事件類的函式，用直接風格會造成阻塞，所以要寫成異步的回調函式，也就是一定要用CPS</p>
 <div class="comments-icon"><br><br><div class="marker">+</div>
@@ -348,14 +249,8 @@
 <p></p></div><p></p>
 </blockquote>
 <p>你可能會認為阻塞有這麼容易發生嗎？是的，在JavaScript中要”阻塞”太容易了，它是單執行緖執行的設計，一個比較長時間的程序執行就會造成阻塞，下面的<code>for</code>迴圈就會讓你的按鈕按下去沒反應，而且幾個訊息都要一段時間執行完才會顯示出來:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'myButton'</span>)</span><br><span class="line"></span><br><span class="line">el.addEventListener( <span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     alert(<span class="string">'hello!'</span>)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> aArray = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt; <span class="number">100000000</span>;i++)&#123;</span><br><span class="line">  aArray[i] = i+<span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'aArray done!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bArray = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt; <span class="number">100000000</span>;i++)&#123;</span><br><span class="line">  bArray[i] = i*<span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'bArray done!'</span>)</span><br></pre></td></tr></table></figure>
 <p>或許你會認為在瀏覽器上讓使用者等個幾秒鐘不會怎麼樣，但如果在要求能讓多個使用者同時使用的伺服器上，每個使用者都來阻塞主執行緒幾秒，這個伺服器程式就可以廢了。不過，以異步執行的異步回調函式並不代表就不會阻塞，也有可能從佇列回到主緒行緒後，因為需要CPU密集型的運算，仍然會阻塞到緒行緒的進行。異步回調函式，只是暫時先移到佇列中放著，讓它先不干擾目前的主執行緒的執行而已。這是JavaScript為了在只有單執行緒的情況，用來達成並行(concurrency)模型的設計方式。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <blockquote>
 <p>如果要配合JavaScript的異步處理流程，也就是非阻塞的I/O處理，只有CPS可以這樣作。</p>
 <div class="comments-icon"><br><br><div class="marker">+</div>
@@ -363,54 +258,24 @@
 <p></p></div><p></p>
 </blockquote>
 <p>在伺服端的Node.js一開始就使用了CPS作為主要的I/O處理方式，老實說是一個不得已的選擇，當時沒有太多的選擇，而且這原本就是JavaScript中對異步回調函式的設計。Node.js使用error-first(以錯誤為主)的CPS風格，因為考慮到callback(回調)要處理錯誤不容易，所以要優先處理錯誤，它的主要原則如下:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <ul>
 <li>callback的第一個參數保留給Error(錯誤)，當錯誤發生時，它將會以第一個參數回傳。</li>
 <li>callback的第2個參數保留給成功回應的資料。當沒有錯誤發生時，error(即第一個參數)會設定為null，然後將成功回應的資料傳入第二個參數。</li>
 </ul>
 <p>一個典型的Node.js的回調語法範例如下:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">'foo.txt'</span>, <span class="string">'utf8'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Unknown Error'</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>Node.js使用CPS風格在複雜的流程時，很容易出現回調地獄的問題，這是因為在伺服器端的各種I/O處理會相當頻繁而且複雜。像下面這個資料庫連接與查詢的範例，出自<a href="http://mongodb.github.io/node-mongodb-native/2.2/api/Collection.html#find" target="_blank" rel="noopener">Node.js MongoDB Driver API</a>:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A simple query using the find method on the collection.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> MongoClient = <span class="keyword">require</span>(<span class="string">'mongodb'</span>).MongoClient,</span><br><span class="line">  test = <span class="keyword">require</span>(<span class="string">'assert'</span>);</span><br><span class="line">MongoClient.connect(<span class="string">'mongodb://localhost:27017/test'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, db)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create a collection we want to drop later</span></span><br><span class="line">  <span class="keyword">var</span> collection = db.collection(<span class="string">'simple_query'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Insert a bunch of documents for the testing</span></span><br><span class="line">  collection.insertMany([&#123;a:<span class="number">1</span>&#125;, &#123;a:<span class="number">2</span>&#125;, &#123;a:<span class="number">3</span>&#125;], &#123;w:<span class="number">1</span>&#125;, <span class="function"><span class="keyword">function</span><span class="params">(err, result)</span> </span>&#123;</span><br><span class="line">    test.equal(<span class="keyword">null</span>, err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Peform a simple find and return all the documents</span></span><br><span class="line">    collection.find().toArray(<span class="function"><span class="keyword">function</span><span class="params">(err, docs)</span> </span>&#123;</span><br><span class="line">      test.equal(<span class="keyword">null</span>, err);</span><br><span class="line">      test.equal(<span class="number">3</span>, docs.length);</span><br><span class="line"></span><br><span class="line">      db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>上面這個範例還算簡單，但裡面的回調函式有3個，函式呼叫了11個，再複雜的話就會更不好維護，我會認為這是一種舊時代的程式碼組織方式的弊病，或是當時不得已的解決方案，當可以採用更好的語法結構來取代它時，這種語法未來大概只會出現在教科書中。現在這種寫法都是一般都已經不建議使用。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p>現在已經有很多協助處理的方式，回調地獄可以用例如Promise、generator、async/await之類的語法結構，或是<a href="https://github.com/caolan/async" target="_blank" rel="noopener">Async</a>、<a href="https://github.com/tj/co" target="_blank" rel="noopener">co</a>外部函式庫等，來改善或重構原本的程式碼結構，在往後維護程式碼上會比較容易，這些才是你現在應該就要學習的方式。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <p>此外，隨著技術不斷的進步，現在的JavaScript也已經有可以讓它使用其他執行緒的技術，有<a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Web_Workers_API/Using_web_workers" target="_blank" rel="noopener">Web Worker</a>，或是專門給Node.js使用的<a href="https://nodejs.org/api/child_process.html#child_process_child_process" target="_blank" rel="noopener">child_process</a>模組與<a href="https://nodejs.org/api/cluster.html" target="_blank" rel="noopener">cluster</a>(叢集)模組。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <h2 id="反樣式-anti-pattern"><a href="#反樣式-anti-pattern" class="headerlink" title="反樣式(anti-pattern)"></a>反樣式(anti-pattern)<a href="#反樣式anti-pattern"></a></h2><h3 id="回傳callback"><a href="#回傳callback" class="headerlink" title="回傳callback"></a>回傳callback<a href="#回傳callback"></a></h3><p>callback(回調)有個很常見的反樣式，它會出現在如果回調除了要進行下一步之外，還要負責處理函式在執行中途的錯誤情況，例如:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//這是錯誤的寫法，最後的callback()依然會執行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">(err, callback)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">    callback()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>為了讓最後的callback()不執行，可以正確的作錯誤處理，有可能會寫成這樣:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//相當不好的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">(err, callback)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="keyword">return</span> callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">    callback()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但是<code>return</code>用在callback上是個不對的樣式，正確的寫法應該是要用下面的寫法:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">(err, callback)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        callback(err)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    callback()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>或是用<code>if...else</code>寫清楚整個情況，但這個樣式也不是太理想，CPS風格寫法的最後一行應該就是個回調函式:</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 <figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> foo(<span class="built_in">err</span>, callback) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">err</span>) &#123;</span><br><span class="line">        callback(<span class="built_in">err</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        callback();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源<a href="#參考資源"></a></h2><ul>
 <li><a href="http://matt.might.net/articles/by-example-continuation-passing-style/" target="_blank" rel="noopener">By example: Continuation-passing style in JavaScript</a></li>
