@@ -184,9 +184,6 @@
 </ul>
 <blockquote>
 <p>基本上一個程式語言要具有高階函式(High Order Function)的特性才能使用CPS風格，也就是可以把某個函式當作另一函式的傳入參數，也可以回傳函式。除了JavaScript語言外，具有高階函式特性的程式語言常見的有Python、Java、Ruby、Swift等等。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 </blockquote>
 <hr>
 <h2 id="異步回調函式"><a href="#異步回調函式" class="headerlink" title="異步回調函式"></a>異步回調函式<a href="#異步回調函式"></a></h2><p>並非所有的使用callbacks(回調)函式的API都是異步執行的，但CPS的確是一種可以確保異步回調執行流程的風格。在JavaScript中，除了DOM事件處理中的回調函式9成9都是異步執行的，語言內建API中使用的回調函式不一定是異步執行的，也有同步執行的例如<code>Array.forEach</code>，要讓開發者自訂的callbacks(回調)的執行轉變為異步，有以下幾種方式:</p>
@@ -207,9 +204,6 @@
 <p>由這個範例中，可以看到異步回調函式執行比同步回調函式更慢，異步回調函式還有另一個名稱是延時回調(defer callback)，是用延時執行特性來命名。這只是一種因應特別情況所採用的函式執行方式，例如需要與外部資源存取(I/O)、DOM事件處理或是計時器的情況。等待的時間則是在Web API中，等有外部資源有回應了(或超時)才會加到佇列中，佇列裡並不會執行函式中的程式碼，只是個準備排隊進入主執行緒的機制，函式一律在主執行緒中執行。</p>
 <blockquote>
 <p>關於函式的異步執行與事件迴圈一些原理的說明，請再參考[異步執行與事件迴圈]的章節裡的內容。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 </blockquote>
 <hr>
 <h2 id="回調函式的複雜性"><a href="#回調函式的複雜性" class="headerlink" title="回調函式的複雜性"></a>回調函式的複雜性<a href="#回調函式的複雜性"></a></h2><p>callback(回調)運用在瀏覽器端似乎並沒有想像中複雜，一個事件的處理範例大概會像下面這樣:</p>
@@ -250,18 +244,12 @@
 <p>那為何為不使用直接風格？而一定要用這麼不易理解的程式流程結構。上面已經有講為什麼JavaScript中會大量的使用CPS的原因:</p>
 <blockquote>
 <p>因為有些I/O或事件類的函式，用直接風格會造成阻塞，所以要寫成異步的回調函式，也就是一定要用CPS</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 </blockquote>
 <p>你可能會認為阻塞有這麼容易發生嗎？是的，在JavaScript中要”阻塞”太容易了，它是單執行緖執行的設計，一個比較長時間的程序執行就會造成阻塞，下面的<code>for</code>迴圈就會讓你的按鈕按下去沒反應，而且幾個訊息都要一段時間執行完才會顯示出來:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'myButton'</span>)</span><br><span class="line"></span><br><span class="line">el.addEventListener( <span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     alert(<span class="string">'hello!'</span>)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> aArray = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt; <span class="number">100000000</span>;i++)&#123;</span><br><span class="line">  aArray[i] = i+<span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'aArray done!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bArray = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt; <span class="number">100000000</span>;i++)&#123;</span><br><span class="line">  bArray[i] = i*<span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'bArray done!'</span>)</span><br></pre></td></tr></table></figure>
 <p>或許你會認為在瀏覽器上讓使用者等個幾秒鐘不會怎麼樣，但如果在要求能讓多個使用者同時使用的伺服器上，每個使用者都來阻塞主執行緒幾秒，這個伺服器程式就可以廢了。不過，以異步執行的異步回調函式並不代表就不會阻塞，也有可能從佇列回到主緒行緒後，因為需要CPU密集型的運算，仍然會阻塞到緒行緒的進行。異步回調函式，只是暫時先移到佇列中放著，讓它先不干擾目前的主執行緒的執行而已。這是JavaScript為了在只有單執行緒的情況，用來達成並行(concurrency)模型的設計方式。</p>
 <blockquote>
 <p>如果要配合JavaScript的異步處理流程，也就是非阻塞的I/O處理，只有CPS可以這樣作。</p>
-<div class="comments-icon"><br><br><div class="marker">+</div>
-
-<p></p></div><p></p>
 </blockquote>
 <p>在伺服端的Node.js一開始就使用了CPS作為主要的I/O處理方式，老實說是一個不得已的選擇，當時沒有太多的選擇，而且這原本就是JavaScript中對異步回調函式的設計。Node.js使用error-first(以錯誤為主)的CPS風格，因為考慮到callback(回調)要處理錯誤不容易，所以要優先處理錯誤，它的主要原則如下:</p>
 <ul>
