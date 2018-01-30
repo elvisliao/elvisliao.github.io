@@ -141,7 +141,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            Javascript
+            Callback
             
         </span>
     </span>
@@ -158,8 +158,7 @@
     </div>
     
     <div class="post-body post-content">
-        <hr>
-<h2 id="Callback-回調-是什麼？"><a href="#Callback-回調-是什麼？" class="headerlink" title="Callback(回調)是什麼？"></a>Callback(回調)是什麼？<a href="#callback回調是什麼？"></a></h2><p>中文翻譯字詞會用”回呼””、”回叫”、”回調”，都是聽起來很怪異的講法，Callback在英文是”call back”兩個單字的合體，你應該有聽過”Call me back”的英文，實際情況大概是有客戶打來電話給你，可是你正在電話中，客戶會留話說請你等會有空時再”回電”給它，這裡的說法是指在電信公司裡的callback的涵意。而在程式開發上上，callback它的使用情境其實也是有類似的地方。</p>
+        <h2 id="Callback-回調-是什麼？"><a href="#Callback-回調-是什麼？" class="headerlink" title="Callback(回調)是什麼？"></a>Callback(回調)是什麼？</h2><p>中文翻譯字詞會用”回呼””、”回叫”、”回調”，都是聽起來很怪異的講法，Callback在英文是”call back”兩個單字的合體，你應該有聽過”Call me back”的英文，實際情況大概是有客戶打來電話給你，可是你正在電話中，客戶會留話說請你等會有空時再”回電”給它，這裡的說法是指在電信公司裡的callback的涵意。而在程式開發上上，callback它的使用情境其實也是有類似的地方。</p>
 <hr>
 <h2 id="CPS風格與直接風格"><a href="#CPS風格與直接風格" class="headerlink" title="CPS風格與直接風格"></a>CPS風格與直接風格</h2><p>延續傳遞風格(Continuation-passing style, CPS)，它的對比是”直接風格(Direct style)”，這兩種是程式開發時所使用的風格，CPS早在1970年代就已經被提出來了。CPS用的是明確地移轉控制權到下一個函式中，也就是使用”延續函式”的方式，一般稱它為”回調函式”或”回調(Callback)”。回調是一個可以作為傳入參數的函式，用於在目前的函式呼叫執行最後移交控制權，而不使用函式回傳值的方式。直接風格的控制權移交是不明確的，它是用回傳值的方式，然後進行到下一行程式碼或呼叫接下來其他函式。下面以範例來說明會比較容易。</p>
 <p>直接風格的範例如下，其實就是一般函式呼叫的方式，或是用回傳的方式:</p>
@@ -230,7 +229,7 @@
 </ul>
 <p>那麼要說到callback(回調)的最大優點，就是它給了程式開發者很大的彈性，允許開發者可以自訂下一個要執行函式的內容，等於說它可以提高函式的擴充性與重覆使用性。</p>
 <hr>
-<h3 id="回調地獄-Callback-Hell"><a href="#回調地獄-Callback-Hell" class="headerlink" title="回調地獄(Callback Hell)"></a>回調地獄(Callback Hell)<a href="#回調地獄callback-hell"></a></h3><p>複雜的情況是在於CPS風格使用callback(回調)來移往下一個函式執行，當你開始撰寫一個接著一個執行的流程，也就是一個特定工作的函式呼叫後要接下一個特定工作的函式時，就會看到所謂的”回調地獄”的結構，像下面這樣的例子:</p>
+<h2 id="回調地獄-Callback-Hell"><a href="#回調地獄-Callback-Hell" class="headerlink" title="回調地獄(Callback Hell)"></a>回調地獄(Callback Hell)</h2><p>複雜的情況是在於CPS風格使用callback(回調)來移往下一個函式執行，當你開始撰寫一個接著一個執行的流程，也就是一個特定工作的函式呼叫後要接下一個特定工作的函式時，就會看到所謂的”回調地獄”的結構，像下面這樣的例子:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">step1(x, <span class="function"><span class="keyword">function</span>(<span class="params">value1</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//do something...</span></span><br><span class="line">  step2(y, <span class="function"><span class="keyword">function</span>(<span class="params">value2</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//do something...</span></span><br><span class="line">    step3(z, <span class="function"><span class="keyword">function</span>(<span class="params">value3</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//do something...</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>它的執行順序應該是<code>step1 -&gt; step2 -&gt; step3</code>沒錯，這三個都可能是已經寫好要作某件特定工作的函式。所以真正是這樣的流程嗎？你可能忘了匿名函式(callback)也是一個函式，所以執行的步驟是像下面這樣才對:</p>
 <ol>
@@ -264,8 +263,7 @@
 <p>現在已經有很多協助處理的方式，回調地獄可以用例如Promise、generator、async/await之類的語法結構，或是<a href="https://github.com/caolan/async" target="_blank" rel="noopener">Async</a>、<a href="https://github.com/tj/co" target="_blank" rel="noopener">co</a>外部函式庫等，來改善或重構原本的程式碼結構，在往後維護程式碼上會比較容易，這些才是你現在應該就要學習的方式。</p>
 <p>此外，隨著技術不斷的進步，現在的JavaScript也已經有可以讓它使用其他執行緒的技術，有<a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Web_Workers_API/Using_web_workers" target="_blank" rel="noopener">Web Worker</a>，或是專門給Node.js使用的<a href="https://nodejs.org/api/child_process.html#child_process_child_process" target="_blank" rel="noopener">child_process</a>模組與<a href="https://nodejs.org/api/cluster.html" target="_blank" rel="noopener">cluster</a>(叢集)模組。</p>
 <hr>
-<h2 id="反樣式-anti-pattern"><a href="#反樣式-anti-pattern" class="headerlink" title="反樣式(anti-pattern)"></a>反樣式(anti-pattern)<a href="#反樣式anti-pattern"></a></h2><hr>
-<h3 id="回傳callback"><a href="#回傳callback" class="headerlink" title="回傳callback"></a>回傳callback<a href="#回傳callback"></a></h3><p>callback(回調)有個很常見的反樣式，它會出現在如果回調除了要進行下一步之外，還要負責處理函式在執行中途的錯誤情況，例如:</p>
+<h2 id="反樣式-anti-pattern"><a href="#反樣式-anti-pattern" class="headerlink" title="反樣式(anti-pattern)"></a>反樣式(anti-pattern)</h2><h3 id="回傳callback"><a href="#回傳callback" class="headerlink" title="回傳callback"></a>回傳callback</h3><p>callback(回調)有個很常見的反樣式，它會出現在如果回調除了要進行下一步之外，還要負責處理函式在執行中途的錯誤情況，例如:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//這是錯誤的寫法，最後的callback()依然會執行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">err, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">    callback()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>為了讓最後的callback()不執行，可以正確的作錯誤處理，有可能會寫成這樣:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//相當不好的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">err, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="keyword">return</span> callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">    callback()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

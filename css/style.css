@@ -645,16 +645,17 @@ pre {
   padding: 0;
 }
 .post-content code {
-  color: #808080;
-  font-size: 0.96em;
-  background-color: #f9f9f9;
-  padding: 1px 2px;
-  border: 1px solid #dadada;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  word-wrap: break-word;
+    border-radius: 2px;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    word-wrap: break-word;
+    letter-spacing: 1px;
+    color: rgb(221, 17, 68);
+    background-color: rgb(247, 247, 249);
+    padding: 2px 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(225, 225, 232);
+    border-image: initial;
 }
 .post-content tt {
   color: #808080;
