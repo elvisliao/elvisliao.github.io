@@ -153,7 +153,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            Callback
+            Javascript
             
         </span>
     </span>
@@ -170,34 +170,36 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="Callback-回調-是什麼？"><a href="#Callback-回調-是什麼？" class="headerlink" title="Callback(回調)是什麼？"></a>Callback(回調)是什麼？</h2><p>中文翻譯字詞會用”回呼””、”回叫”、”回調”，都是聽起來很怪異的講法，Callback在英文是”call back”兩個單字的合體，你應該有聽過”Call me back”的英文，實際情況大概是有客戶打來電話給你，可是你正在電話中，客戶會留話說請你等會有空時再”回電”給它，這裡的說法是指在電信公司裡的callback的涵意。而在程式開發上上，callback它的使用情境其實也是有類似的地方。</p>
+        <h2 id="Callback-回調-是什麼？"><a href="#Callback-回調-是什麼？" class="headerlink" title="Callback(回調)是什麼？"></a>Callback(回調)是什麼？</h2><p>Callback 在英文是”call back”兩個單字的合體，你應該有聽過”Call me back”的英文，實際情況大概是有客戶打來電話給你，可是你正在電話中，客戶會留話說請你等會有空時再”回電”給它。而在程式開發上，callback 的使用情境其實也是與這樣類似。</p>
 <hr>
-<h2 id="CPS風格與直接風格"><a href="#CPS風格與直接風格" class="headerlink" title="CPS風格與直接風格"></a>CPS風格與直接風格</h2><p>延續傳遞風格(Continuation-passing style, CPS)，它的對比是”直接風格(Direct style)”，這兩種是程式開發時所使用的風格，CPS早在1970年代就已經被提出來了。CPS用的是明確地移轉控制權到下一個函式中，也就是使用”延續函式”的方式，一般稱它為”回調函式”或”回調(Callback)”。回調是一個可以作為傳入參數的函式，用於在目前的函式呼叫執行最後移交控制權，而不使用函式回傳值的方式。直接風格的控制權移交是不明確的，它是用回傳值的方式，然後進行到下一行程式碼或呼叫接下來其他函式。下面以範例來說明會比較容易。</p>
-<p>直接風格的範例如下，其實就是一般函式呼叫的方式，或是用回傳的方式:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接風格</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>CPS風格就不是這樣，它會用另一個函式作為函式中的傳入參數的樣式來撰寫程式，然後將本來應該要回傳的值(不限定只有一個)，傳給下一個延續函式，繼續下個函式的執行:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//CPS風格</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">x, cb</span>) </span>&#123;</span><br><span class="line">  cb(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以明確的程式流程的例子來說，假設現在要從資料庫獲取某個會員的資料，然後把裡面的大頭照片輸出。</p>
+<h2 id="CPS風格與直接風格"><a href="#CPS風格與直接風格" class="headerlink" title="CPS風格與直接風格"></a>CPS風格與直接風格</h2><p>Callback有兩種風格，分別是：延續傳遞風格(Continuation-passing style, CPS)、直接風格 (Direct style)，這兩種是程式開發時所使用的風格，CPS早在1970年代就已經被提出來了。</p>
+<ul>
+<li><strong>CPS風格：</strong>CPS用的是明確地移轉控制權到下一個函式中，也就是使用「延續函式」的方式，一般稱它為「回調函式」或「回調(Callback)」。回調是一個可以作為傳入參數的函式，用於在目前的函式呼叫執行最後移交控制權，而不使用函式回傳值的方式。</li>
+<li><strong>直接風格：</strong>控制權移交是不明確的，它是利用回傳值的方式，進行到下一行程式碼或是呼叫接下來函式。下面以範例來說明會比較容易理解。</li>
+</ul>
+<p>假設現在要從資料庫獲取某個會員的資料，然後把裡面的大頭照片輸出。</p>
 <p>用直接風格的寫法:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAvatar</span>(<span class="params">user</span>)</span>&#123;</span><br><span class="line">   <span class="comment">//...一些程式碼</span></span><br><span class="line">   <span class="keyword">return</span> avatar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">avatar</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(avatar)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> avatar = getAvatar(<span class="string">'eddy'</span>)</span><br><span class="line">display(avatar)</span><br></pre></td></tr></table></figure>
 <p>用CPS風格的寫法，像下面這樣:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAvatar</span>(<span class="params">user, cb</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//...一些程式碼</span></span><br><span class="line">   cb(avatar)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">avatar</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(avatar)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getAvatar(<span class="string">'eddy'</span>, display)</span><br></pre></td></tr></table></figure>
-<p>長久以來在程式語言開發界，直接風格的程式碼是最常被使用的，因為它容易被學習與理解，一個步驟接著一個步驟，學校的程式語言課程大部份也是用這種風格來教學，不論在個人電腦上的、在伺服器端的程式語言設計通常也是這樣。主要是因為個人電腦端或是伺服器端，通常使用多執行緒或改進底層運作的執行方式，來解決多工或並行的問題。CPS風格反而很少被使用，並沒有明顯的誘因讓程式設計師一定要用CPS風格，而且也不是所有的程式語言都能使用CPS風格，在過去CPS風格並不算是主流的程式開發寫作風格。</p>
-<p>CPS風格相較於直接風格還有一些明顯的缺點:</p>
+<h3 id="為什麼要用CPS風格"><a href="#為什麼要用CPS風格" class="headerlink" title="為什麼要用CPS風格?"></a>為什麼要用CPS風格?</h3><p>CPS風格編寫起來這麼不直觀，為什麼要改用這樣的寫法？</p>
 <ul>
-<li>在愈複雜的應用情況時，程式碼愈不易撰寫與組織，維護性與閱讀性也很低</li>
-<li>在錯誤處理上較為困難</li>
-</ul>
-<p>JavaScript中會大量使用CPS風格，除了它本身可以使用這種風格外，其實是有原因:</p>
-<ul>
-<li>只有單執行緒，在瀏覽器端只有一個使用者，但事件或網路要求(AJAX)要求不能阻塞其他程式的進行，但這也僅限在這些特殊的情況。不過在伺服器端的執行情況都很嚴峻，要能同時讓多人連線使用，必需要達到不能阻塞I/O，才能與以多執行緒執行的伺服器一樣的執行效益。</li>
+<li>過去語言多用在個人電腦或伺服器端，大多是多執行緒或改進底層運作的執行方式，所以直接風格並不會影響太大的效能問題，所以CPS風格在過去不算很主流。</li>
+<li>JavaScript中會大量使用CPS風格，除了它本身可以使用這種風格外，其實是有原因：<ol>
+<li>只有單執行緒，在瀏覽器端只有一個使用者，但事件或網路要求(AJAX)要求不能阻塞其他程式的進行，在伺服器端的執行時更加嚴峻，要能同時讓多人連線使用，必需要達到不能阻塞I/O，才能與以多執行緒執行的伺服器一樣的執行效益。</li>
 <li>一開始就是以CPS風格來設計事件異步處理的模型，用於配合異步回調函式的執行使用。</li>
+</ol>
+</li>
 </ul>
 <blockquote>
 <p>基本上一個程式語言要具有高階函式(High Order Function)的特性才能使用CPS風格，也就是可以把某個函式當作另一函式的傳入參數，也可以回傳函式。除了JavaScript語言外，具有高階函式特性的程式語言常見的有Python、Java、Ruby、Swift等等。</p>
 </blockquote>
+<h3 id="CPS風格的缺點"><a href="#CPS風格的缺點" class="headerlink" title="CPS風格的缺點"></a>CPS風格的缺點</h3><ul>
+<li>在愈複雜的應用情況時，程式碼愈不易撰寫與組織，維護性與閱讀性也很低</li>
+<li>在錯誤處理上較為困難</li>
+</ul>
 <hr>
-<h2 id="異步回調函式"><a href="#異步回調函式" class="headerlink" title="異步回調函式"></a>異步回調函式<a href="#異步回調函式"></a></h2><p>並非所有的使用callbacks(回調)函式的API都是異步執行的，但CPS的確是一種可以確保異步回調執行流程的風格。在JavaScript中，除了DOM事件處理中的回調函式9成9都是異步執行的，語言內建API中使用的回調函式不一定是異步執行的，也有同步執行的例如<code>Array.forEach</code>，要讓開發者自訂的callbacks(回調)的執行轉變為異步，有以下幾種方式:</p>
+<h2 id="異步回調函式"><a href="#異步回調函式" class="headerlink" title="異步回調函式"></a>異步回調函式</h2><p>並非所有使用callback函式的API都是異步執行的，除了DOM事件的回調函式9成9都是異步執行的之外，語言內建API中使用的回調函式不一定是異步執行。同步執行的例如 <code>Array.forEach</code>，所以要如何讓開發者自訂的callback轉變為異步？有以下幾種方式:</p>
 <ul>
 <li>使用計時器(timer)函式: <code>setTimeout</code>, <code>setInterval</code></li>
 <li>特殊的函式: <code>nextTick</code>, <code>setImmediate</code></li>
