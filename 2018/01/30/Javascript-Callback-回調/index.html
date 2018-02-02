@@ -153,7 +153,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            Javascript
+            Callback
             
         </span>
     </span>
@@ -182,28 +182,28 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAvatar</span>(<span class="params">user</span>)</span>&#123;</span><br><span class="line">   <span class="comment">//...一些程式碼</span></span><br><span class="line">   <span class="keyword">return</span> avatar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">avatar</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(avatar)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> avatar = getAvatar(<span class="string">'eddy'</span>)</span><br><span class="line">display(avatar)</span><br></pre></td></tr></table></figure>
 <p>用CPS風格的寫法，像下面這樣:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAvatar</span>(<span class="params">user, cb</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//...一些程式碼</span></span><br><span class="line">   cb(avatar)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">avatar</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(avatar)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getAvatar(<span class="string">'eddy'</span>, display)</span><br></pre></td></tr></table></figure>
-<h3 id="為什麼要用CPS風格"><a href="#為什麼要用CPS風格" class="headerlink" title="為什麼要用CPS風格?"></a>為什麼要用CPS風格?</h3><p>CPS風格編寫起來這麼不直觀，為什麼要改用這樣的寫法？</p>
+<h3 id="為什麼要用CPS風格"><a href="#為什麼要用CPS風格" class="headerlink" title="為什麼要用CPS風格?"></a>為什麼要用CPS風格?</h3><p>CPS風格編寫起來這麼不直觀，為什麼要用這樣的寫法？</p>
 <ul>
-<li>過去語言多用在個人電腦或伺服器端，大多是多執行緒或改進底層運作的執行方式，所以直接風格並不會影響太大的效能問題，所以CPS風格在過去不算很主流。</li>
-<li>JavaScript中會大量使用CPS風格，除了它本身可以使用這種風格外，其實是有原因：<ol>
-<li>只有單執行緒，在瀏覽器端只有一個使用者，但事件或網路要求(AJAX)要求不能阻塞其他程式的進行，在伺服器端的執行時更加嚴峻，要能同時讓多人連線使用，必需要達到不能阻塞I/O，才能與以多執行緒執行的伺服器一樣的執行效益。</li>
+<li>過去語言多用在個人電腦或伺服器端，大多是多執行緒或改進底層運作的執行方式，直接風格並不會影響太大的效能問題，所以CPS風格在過去不算很主流。</li>
+<li>在JavaScript中會大量使用CPS風格，除了它本身可以使用這種風格外，其實是有原因：<ol>
+<li>只有單執行緒，事件或網路要求(AJAX)不能阻塞其他程式的進行，使用在伺服器端執行時更是嚴峻，要能夠讓多人同時連線使用，必需達到不阻塞I/O，才能與多執行緒伺服器一樣的有效率。</li>
 <li>一開始就是以CPS風格來設計事件異步處理的模型，用於配合異步回調函式的執行使用。</li>
 </ol>
 </li>
 </ul>
 <blockquote>
-<p>基本上一個程式語言要具有高階函式(High Order Function)的特性才能使用CPS風格，也就是可以把某個函式當作另一函式的傳入參數，也可以回傳函式。除了JavaScript語言外，具有高階函式特性的程式語言常見的有Python、Java、Ruby、Swift等等。</p>
+<p>基本上一個程式語言要具有高階函式(High Order Function)的特性才能使用CPS風格，也就是說可以把某個函式當作另一函式的傳入參數，也要可以回傳函式。除了JavaScript語言外，具有高階函式特性的程式語言常見的有Python、Java、Ruby、Swift等等。</p>
 </blockquote>
 <h3 id="CPS風格的缺點"><a href="#CPS風格的缺點" class="headerlink" title="CPS風格的缺點"></a>CPS風格的缺點</h3><ul>
-<li>在愈複雜的應用情況時，程式碼愈不易撰寫與組織，維護性與閱讀性也很低</li>
+<li>在愈複雜的應用情況時，程式碼愈不易撰寫與組織，維護性與閱讀性也很低(Callback Hell)</li>
 <li>在錯誤處理上較為困難</li>
 </ul>
 <hr>
-<h2 id="異步回調函式"><a href="#異步回調函式" class="headerlink" title="異步回調函式"></a>異步回調函式</h2><p>並非所有使用callback函式的API都是異步執行的，除了DOM事件的回調函式9成9都是異步執行的之外，語言內建API中使用的回調函式不一定是異步執行。同步執行的例如 <code>Array.forEach</code>，所以要如何讓開發者自訂的callback轉變為異步？有以下幾種方式:</p>
+<h2 id="異步回調函式"><a href="#異步回調函式" class="headerlink" title="異步回調函式"></a>異步回調函式</h2><p>並非所有使用callback函式的API都是異步執行的，除了DOM事件的回調函式9成9都是異步執行的之外，語言內建API中使用的回調函式不一定是異步執行。同步執行的例如 <code>Array.forEach</code>，那要如何讓開發者自訂的callback轉變為異步？有以下幾種方式:</p>
 <ul>
-<li>使用計時器(timer)函式: <code>setTimeout</code>, <code>setInterval</code></li>
-<li>特殊的函式: <code>nextTick</code>, <code>setImmediate</code></li>
-<li>執行I/O: 監聽網路、資料庫查詢或讀寫外部資源</li>
+<li>使用計時器(timer)函式： <code>setTimeout</code>、<code>setInterval</code>　</li>
+<li>特殊的函式： <code>nextTick</code>、<code>setImmediate</code></li>
+<li>執行I/O： 監聽網路、資料庫查詢或讀寫外部資源</li>
 <li>訂閱事件</li>
 </ul>
 <p>針對callbacks(回調)函式來說，異步與同步的執行到底是差在那裡？你可能會產生疑惑。下面用個簡單的例子來說明。</p>
