@@ -206,13 +206,14 @@
 <h1 id="常用實例"><a href="#常用實例" class="headerlink" title="常用實例"></a>常用實例</h1><p>常用實例首先就是上述講的避免在使用全域變數的地方上，第二點就是使用在迴圈賦值上。<br>不知道你有沒有那個經驗，有時候在一個迴圈賦值的時候一直給不上去，每次都存到了迴圈的最後一筆資料？<br>原因就是如果迴圈中有了異步回調，那它會先移到工作佇列中準備執行異部處理(setTimeout、AJAX等)，等它回來主執行緒執行時，迴圈早就跳出執行了，而且i還已經跑到了最後一個，所以接下來執行的動作，能獲取到的值全部都是錯的。<br>這時候如果使用closure的話，可以在迴圈每跑一次就執行一次的closure函式，將值記錄在裡面並且輸出，可以確保程式不會亂掉。</p>
 <p>至於實際的範例可以參考這邊：<a href="http://jsbin.com/lecinib/edit?js,console,output" target="_blank" rel="noopener">JSbin</a></p>
 <h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">閉包- JavaScript | MDN</a><br><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html" target="_blank" rel="noopener">從ES6開始的JavaScript學習生活</a><br><a href="https://pjchender.blogspot.tw/2017/05/javascript-closure.html" target="_blank" rel="noopener">深入淺出瞭解 JavaScript 閉包（closure）</a><br><a href="http://blog.darkthread.net/post-2009-03-11-js-this-and-closure.aspx" target="_blank" rel="noopener">Javascript - 淺談this與Closure</a></p>
+<p>fw</p>
 
     </div>
 
     <div class="post-footer">   
         <div>
             
-                轉載聲明：商業轉載請聯繫作者獲得授權,非商業轉載請註明出處 © <a href="" target="_blank">Snippet</a>
+                轉載聲明：商業轉載請聯繫作者獲得授權，非商業轉載請註明出處
             
         </div>
         <div>
@@ -291,7 +292,7 @@
     <div class="widget notification">
         <h3 class="title">網站公告</h3>
         <div>
-            <p>Hi there, 我是Elvis，目前是軟體工程師，專注在網頁全端的研究上，另外也會寫一些Android App 以及研究 Distributed System <br/>
+            <p>Hi there, 我是Elvis，目前是軟體工程師，專注在網頁全端的研究上，另外也會寫一些Android App 以及研究各種前端趨勢<br/>
 <hr>
 <p>如果文章有任何版權問題冒犯或是想要工作、技術交流，歡迎留言或mail給我，感謝！ <br/>
         </div>
@@ -309,10 +310,6 @@
             
 	            <a href="mailto:faultlessly.k@gmail.com" rel="external nofollow" title="Email" target="_blank">
 			    	<i class="envelope-o fa fa-envelope-o"></i>
-			    </a>
-            
-	            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
-			    	<i class="feed fa fa-feed"></i>
 			    </a>
             
         </div>

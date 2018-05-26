@@ -170,7 +170,7 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="Callback-回調-是什麼？"><a href="#Callback-回調-是什麼？" class="headerlink" title="Callback(回調)是什麼？"></a>Callback(回調)是什麼？</h2><p>Callback 在英文是”call back”兩個單字的合體，你應該有聽過”Call me back”的英文，實際情況大概是有客戶打來電話給你，可是你正在電話中，客戶會留話說請你等會有空時再”回電”給它。而在程式開發上，callback 的使用情境其實也是與這樣類似。</p>
+        <h2 id="Callback-回調-是什麼？"><a href="#Callback-回調-是什麼？" class="headerlink" title="Callback(回調)是什麼？"></a>Callback(回調)是什麼？</h2><p>Callback 在英文是”call back”兩個單字的合體，你應該有聽過”Call me back”的英文，實際情況大概是有客戶打來電話給你，可是你正在電話中，客戶會留話說請你等會有空時再”回電”給它。而在程式開發上，callback 的使用其實也是與這類似。</p>
 <hr>
 <h2 id="CPS風格與直接風格"><a href="#CPS風格與直接風格" class="headerlink" title="CPS風格與直接風格"></a>CPS風格與直接風格</h2><p>Callback有兩種風格，分別是：延續傳遞風格(Continuation-passing style, CPS)、直接風格 (Direct style)，這兩種是程式開發時所使用的風格，CPS早在1970年代就已經被提出來了。</p>
 <ul>
@@ -206,17 +206,17 @@
 <li>執行I/O： 監聽網路、資料庫查詢或讀寫外部資源</li>
 <li>訂閱事件</li>
 </ul>
-<p>針對callbacks(回調)函式來說，異步與同步的執行到底是差在那裡？你可能會產生疑惑。下面用個簡單的例子來說明。</p>
+<p>針對callbacks(回調)函式來說，異步與同步的執行到底是差在哪？下面用簡單的例子來說明：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aFunc</span>(<span class="params">value, callback</span>)</span>&#123;</span><br><span class="line">  callback(value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bFunc</span>(<span class="params">value, callback</span>)</span>&#123;</span><br><span class="line">  setTimeout(callback, <span class="number">0</span>, value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cb1</span>(<span class="params">value</span>)</span>&#123; <span class="built_in">console</span>.log(value) &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cb2</span>(<span class="params">value</span>)</span>&#123; <span class="built_in">console</span>.log(value) &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cb3</span>(<span class="params">value</span>)</span>&#123; <span class="built_in">console</span>.log(value) &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cb4</span>(<span class="params">value</span>)</span>&#123; <span class="built_in">console</span>.log(value) &#125;</span><br><span class="line"></span><br><span class="line">aFunc(<span class="number">1</span>, cb1)</span><br><span class="line">bFunc(<span class="number">2</span>, cb2)</span><br><span class="line">aFunc(<span class="number">3</span>, cb3)</span><br><span class="line">bFunc(<span class="number">4</span>, cb4)</span><br></pre></td></tr></table></figure>
 <p><code>aFunc</code>是一個簡單的回調結構，<code>callback</code>回調函式被傳入後最後以<code>value</code>作為傳入參數執行。</p>
-<p><code>bFunc</code>函式則是包裹了一個<code>setTimeout</code>內建方法，它可以在一定時間內(第二個參數)執行第一個參數，也就是<code>setTimeout</code>會執行的回調函式，第三個參數是要加入到回調函式的傳入參數值。</p>
+<p><code>bFunc</code>函式則是包裹了一個<code>setTimeout</code>內建方法，它可以在一定時間內(第二個參數)執行第一個參數，也就是<code>setTimeout</code>會執行回調函式，第三個參數是要加入到回調函式的傳入參數值。</p>
 <p><code>aFunc</code>中使用了一般的回調函式，只是傳入到函式中當作參數，然後最後執行而已，這種是同步執行的回調函式，只是用了CPS風格的寫法。</p>
 <p><code>bFunc</code>中使用了計時器API<code>setTimeout</code>會把傳入的回調函式進行異步執行，也就是先移到工作佇列中，等執行主執行緒的呼叫堆疊空了，在某個時間回到主執行緒再執行。所以即使它的時間設定為0秒，裡面的回調函式並不是立即執行，而是會暫緩(延時)執行的一種回調函式，一般稱為異步回調函式。</p>
 <p>最後的執行結果是<code>1 -&gt; 3 -&gt; 2 -&gt; 4</code>，也就是說，所有的同步回調函式都執行完成了，才會開始依順序執行異步的回調函式。如果你在瀏覽器上測試這個程式，應該會明顯感受到，2與4的輸出時，會有點延遲的現象，這並不是你的瀏覽器或電腦的問題，這是因為不論你設定的<code>setTimeout</code>為0，它要回到主執行緒上執行，仍然需要按照內部事件迴圈所設定的時間差，在某個時間點才會回來執行。</p>
-<p>這個程式執行的流程，可以看<a href="http://latentflip.com/loupe/?code=ZnVuY3Rpb24gYUZ1bmModmFsdWUsIGNiKXsKICBjYih2YWx1ZSk7Cn0KCmZ1bmN0aW9uIGJGdW5jKHZhbHVlLCBjYil7CiAgc2V0VGltZW91dChjYiwgMCwgdmFsdWUpOwp9CgpmdW5jdGlvbiBjYjEodmFsdWUpeyBjb25zb2xlLmxvZyh2YWx1ZSk7IH0KZnVuY3Rpb24gY2IyKHZhbHVlKXsgY29uc29sZS5sb2codmFsdWUpOyB9CmZ1bmN0aW9uIGNiMyh2YWx1ZSl7IGNvbnNvbGUubG9nKHZhbHVlKTsgfQpmdW5jdGlvbiBjYjQodmFsdWUpeyBjb25zb2xlLmxvZyh2YWx1ZSk7IH0KCmFGdW5jKDEsIGNiMSk7CmJGdW5jKDIsIGNiMik7CmFGdW5jKDMsIGNiMyk7CmJGdW5jKDQsIGNiNCk7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D" target="_blank" rel="noopener">這個在loupe網站的流程模擬</a>，輸出一樣在瀏覽器的主控台中可以看到。</p>
+<p>這個程式執行的流程，可以看<a href="http://latentflip.com/loupe/?code=ZnVuY3Rpb24gYUZ1bmModmFsdWUsIGNiKXsKICBjYih2YWx1ZSk7Cn0KCmZ1bmN0aW9uIGJGdW5jKHZhbHVlLCBjYil7CiAgc2V0VGltZW91dChjYiwgMCwgdmFsdWUpOwp9CgpmdW5jdGlvbiBjYjEodmFsdWUpeyBjb25zb2xlLmxvZyh2YWx1ZSk7IH0KZnVuY3Rpb24gY2IyKHZhbHVlKXsgY29uc29sZS5sb2codmFsdWUpOyB9CmZ1bmN0aW9uIGNiMyh2YWx1ZSl7IGNvbnNvbGUubG9nKHZhbHVlKTsgfQpmdW5jdGlvbiBjYjQodmFsdWUpeyBjb25zb2xlLmxvZyh2YWx1ZSk7IH0KCmFGdW5jKDEsIGNiMSk7CmJGdW5jKDIsIGNiMik7CmFGdW5jKDMsIGNiMyk7CmJGdW5jKDQsIGNiNCk7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D" target="_blank" rel="noopener">這個流程模擬</a>，輸出一樣在瀏覽器的主控台中可以看到。</p>
 <p>由這個範例中，可以看到異步回調函式執行比同步回調函式更慢，異步回調函式還有另一個名稱是延時回調(defer callback)，是用延時執行特性來命名。這只是一種因應特別情況所採用的函式執行方式，例如需要與外部資源存取(I/O)、DOM事件處理或是計時器的情況。等待的時間則是在Web API中，等有外部資源有回應了(或超時)才會加到佇列中，佇列裡並不會執行函式中的程式碼，只是個準備排隊進入主執行緒的機制，函式一律在主執行緒中執行。</p>
 <blockquote>
-<p>關於函式的異步執行與事件迴圈一些原理的說明，請再參考[異步執行與事件迴圈]的章節裡的內容。</p>
+<p>關於函式的異步執行與事件迴圈一些原理的說明，可以參考[異步執行與事件迴圈]。</p>
 </blockquote>
 <hr>
 <h2 id="回調函式的複雜性"><a href="#回調函式的複雜性" class="headerlink" title="回調函式的複雜性"></a>回調函式的複雜性<a href="#回調函式的複雜性"></a></h2><p>callback(回調)運用在瀏覽器端似乎並沒有想像中複雜，一個事件的處理範例大概會像下面這樣:</p>
@@ -226,7 +226,7 @@
 <p>AJAX是另一個常使用的情況，內建的<code>XMLHttpRequest</code>物件的行為類似於事件處理，而且都打包好好的。實際上<code>onreadystatechange</code>這個屬性，就是<code>XMLHttpRequest</code>物件在處理事件用的callback(回調)函式。以下為一個簡單的範例:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == XMLHttpRequest.DONE ) &#123;</span><br><span class="line">       <span class="keyword">if</span> (xhr.status == <span class="number">200</span>) &#123;</span><br><span class="line">           <span class="built_in">document</span>.getElementById(<span class="string">'myDiv'</span>).innerHTML = xhr.responseText</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (xhr.status == <span class="number">400</span>) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'There was an error 400'</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="string">'something else other than 200 was returned'</span>)</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">'GET'</span>, <span class="string">'ajax_info.txt'</span>, <span class="literal">true</span>)</span><br><span class="line">xhr.send()</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="“匿名函式”、”函式定義”與”函式呼叫”的混合"><a href="#“匿名函式”、”函式定義”與”函式呼叫”的混合" class="headerlink" title="“匿名函式”、”函式定義”與”函式呼叫”的混合"></a>“匿名函式”、”函式定義”與”函式呼叫”的混合<a href="#匿名函式、函式定義與函式呼叫的混合"></a></h3><p>我會認為回調函式會複雜的原因是主要是來自”匿名函式”、”函式定義”與”函式呼叫”的混合寫法。所以當在看程式碼時，你的腦袋很容易打結。</p>
+<h3 id="“匿名函式”、”函式定義”與”函式呼叫”的混合"><a href="#“匿名函式”、”函式定義”與”函式呼叫”的混合" class="headerlink" title="“匿名函式”、”函式定義”與”函式呼叫”的混合"></a>“匿名函式”、”函式定義”與”函式呼叫”的混合</h3><p>我會認為回調函式會複雜的原因是主要是來自”匿名函式”、”函式定義”與”函式呼叫”的混合寫法。所以當在看程式碼時，你的腦袋很容易打結。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">x, cb</span>)</span>&#123;</span><br><span class="line">  cb(x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func(<span class="number">123456</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>這例子很簡單，要分作幾個部份來看:</p>
 <p>這是一個完整的”函式呼叫”，也就是說它是一個被執行的語句結構:</p>
@@ -297,7 +297,7 @@
     <div class="post-footer">   
         <div>
             
-                轉載聲明：商業轉載請聯繫作者獲得授權,非商業轉載請註明出處 © <a href="" target="_blank">Snippet</a>
+                轉載聲明：商業轉載請聯繫作者獲得授權，非商業轉載請註明出處
             
         </div>
         <div>
@@ -374,7 +374,7 @@
     <div class="widget notification">
         <h3 class="title">網站公告</h3>
         <div>
-            <p>Hi there, 我是Elvis，目前是軟體工程師，專注在網頁全端的研究上，另外也會寫一些Android App 以及研究 Distributed System <br/>
+            <p>Hi there, 我是Elvis，目前是軟體工程師，專注在網頁全端的研究上，另外也會寫一些Android App 以及研究各種前端趨勢<br/>
 <hr>
 <p>如果文章有任何版權問題冒犯或是想要工作、技術交流，歡迎留言或mail給我，感謝！ <br/>
         </div>
@@ -392,10 +392,6 @@
             
 	            <a href="mailto:faultlessly.k@gmail.com" rel="external nofollow" title="Email" target="_blank">
 			    	<i class="envelope-o fa fa-envelope-o"></i>
-			    </a>
-            
-	            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
-			    	<i class="feed fa fa-feed"></i>
 			    </a>
             
         </div>
