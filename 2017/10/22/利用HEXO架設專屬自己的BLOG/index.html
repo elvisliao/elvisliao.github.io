@@ -28,7 +28,7 @@
     <!--Title-->
 
 
-<title>彙整：2018/1 | Elvis&#39;s tech notes</title>
+<title>利用HEXO架設屬於自己的BLOG | Elvis&#39;s tech notes</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Elvis&#39;s tech notes" type="application/atom+xml">
@@ -131,27 +131,105 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-  <div id="post-list">
-    <ul class="archives-post-list">
-    	<h1 class="info">2018年 1月</h1>
-        
-          <li class="post-items" _href="/2018/01/30/Javascript-Callback-回調/">
-            <h3 class="post-item-title">
-            	<a href="/2018/01/30/Javascript-Callback-回調/"> Javascript Callback 回調 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/01/23/如何淺顯易懂-JavaScript-closure-閉包/">
-            <h3 class="post-item-title">
-            	<a href="/2018/01/23/如何淺顯易懂-JavaScript-closure-閉包/"> 如何淺顯易懂 JavaScript closure 閉包 </a>
-            </h3>  
-          </li>
-        
-    </ul>
-  </div>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="利用HEXO架設屬於自己的BLOG">
+            
+	            利用HEXO架設屬於自己的BLOG
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>其他</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            hexo
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/10/22</span>
+    </span>
 </div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>過去曾用過WordPress、logdown等等來撰寫文章，但都一直無法讓自己滿意，不是架設太複雜就是很難去客製化自己的主題。基本主題東改改西改改，花費的時間一多，就喪失了隨手寫Blog的意義了。</p>
+<p>在一個偶然的情況下，逛到一個技術部落格，就是使用HEXO來實現，簡潔、快速架設、美觀的優點正好是我需要的，於是這個站就這麼產生了。</p>
+<hr>
+<h1 id="安裝-Hexo："><a href="#安裝-Hexo：" class="headerlink" title="安裝 Hexo："></a>安裝 Hexo：</h1><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install </span>hexo-cli -g</span><br><span class="line">hexo init <span class="keyword">blog</span></span><br><span class="line"><span class="keyword">cd </span><span class="keyword">blog</span></span><br><span class="line"><span class="keyword">npm </span><span class="keyword">install</span></span><br><span class="line"><span class="keyword">hexo </span>server</span><br></pre></td></tr></table></figure>
+<p>如果有任何的問題，Hexo官網也都有很詳細的<a href="https://hexo.io/zh-tw/docs/index.html" target="_blank" rel="noopener">操作文件</a>可以參考，只要照著步驟都可以完成。</p>
+<p>另外，主題方面，要找到自己喜歡的真不容易。好險Hexo提供了很多<a href="https://hexo.io/themes/" target="_blank" rel="noopener">Theme</a>讓人套用，如果你覺的自己客製出來的主題很厲害，也都可以pull request。</p>
+<p>主題套用方法，一樣可以參考<a href="https://hexo.io/zh-tw/docs/themes.html" target="_blank" rel="noopener">操作手冊</a>，一切都是非常的懶人非常簡單。</p>
+<hr>
+<h1 id="發布至Github"><a href="#發布至Github" class="headerlink" title="發布至Github"></a>發布至Github</h1><p>Hexo deploy可以部署到很多個平台，具體可以參考這個<a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">連結</a>。如果部署到github，需要在配置文件_config.xml中作如下修改：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> <span class="params">&lt;repository url&gt;</span></span><br><span class="line"><span class="symbol">  branch:</span> [branch]</span><br><span class="line"><span class="symbol">  message:</span> [message]</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="常用指令："><a href="#常用指令：" class="headerlink" title="常用指令："></a>常用指令：</h1><ol>
+<li>hexo generate (hexo g) 生成靜態文件，會在當前目錄下生成一個新的叫做public的文件夾。</li>
+<li>hexo server (hexo s) 啟動Local web服務，用於Hexo的預覽</li>
+<li>hexo deploy (hexo d) 部署到遠端（比如github, heroku等平台）</li>
+</ol>
+<p>這邊有一個我常用的組合指令：</p>
+<pre><code>hexo clean &amp;&amp; hexo d -g
+</code></pre><p>它就是將上面一整串合併在一起，然後產生靜態檔，最後發布到github上。</p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                轉載聲明：商業轉載請聯繫作者獲得授權，非商業轉載請註明出處
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/01/23/如何淺顯易懂-JavaScript-closure-閉包/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
 
 
 
