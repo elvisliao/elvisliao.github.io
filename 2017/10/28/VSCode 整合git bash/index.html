@@ -28,7 +28,7 @@
     <!--Title-->
 
 
-<title>彙整：2018/7 | Elvis&#39;s tech notes</title>
+<title>VSCode 整合git bash | Elvis&#39;s tech notes</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Elvis&#39;s tech notes" type="application/atom+xml">
@@ -131,21 +131,93 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-  <div id="post-list">
-    <ul class="archives-post-list">
-    	<h1 class="info">2018年 7月</h1>
-        
-          <li class="post-items" _href="/2018/07/03/VSCode 整合git bash/">
-            <h3 class="post-item-title">
-            	<a href="/2018/07/03/VSCode 整合git bash/"> 123 </a>
-            </h3>  
-          </li>
-        
-    </ul>
-  </div>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="VSCode 整合git bash">
+            
+	            VSCode 整合git bash
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>其他</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            vscode
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/10/28</span>
+    </span>
 </div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>很常用的設定，記錄下來，也幫助一些小兄弟們。</p>
+<p>原先的VSCode shell非常的難用，如果熟悉git的話一定會知道git-bash.exe，可以使用linux的shell語法，非常的方便。</p>
+<h2 id="請參考以下的設定："><a href="#請參考以下的設定：" class="headerlink" title="請參考以下的設定："></a>請參考以下的設定：</h2><h1 id="打開設定-gt-使用者設定："><a href="#打開設定-gt-使用者設定：" class="headerlink" title="打開設定 -&gt; 使用者設定："></a>打開設定 -&gt; 使用者設定：</h1><p>依據發文時的版本，這個設定在VScode的左下角齒輪裡面，我第一次也是找很久才找到，接著就修改使用者設定setting.json<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"terminal.integrated.shell.windows"</span>: <span class="string">"YOUR:\\PATH\\TO\\bin\\bash.exe"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>設定完後重啟VScode<br>記得！一定要設Git目錄下的 bin\bash.exe，設成git-bash.exe的話，會獨立跳窗開啟，不會整合到VScode。</p>
+<h1 id="什麼-不知道Git目錄在哪"><a href="#什麼-不知道Git目錄在哪" class="headerlink" title="什麼?不知道Git目錄在哪"></a>什麼?不知道Git目錄在哪</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">where</span> git</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                轉載聲明：商業轉載請聯繫作者獲得授權，非商業轉載請註明出處
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/11/04/如何淺顯易懂-JavaScript-closure-閉包/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/10/22/利用HEXO架設專屬自己的BLOG/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
 
 
 
@@ -216,7 +288,7 @@
         
     <div class="widget">
         <h3 class="title">分類</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/"><i class="fa" aria-hidden="true">Javascript</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">1</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/"><i class="fa" aria-hidden="true">Javascript</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">2</span></li></ul>
     </div>
 
 
@@ -224,7 +296,7 @@
         
     <div class="widget">
       <h3 class="title">彙整</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/"><i class="fa" aria-hidden="true">七月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/"><i class="fa" aria-hidden="true">十一月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">十月 2017</i></a><span class="archive-list-count">1</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/"><i class="fa" aria-hidden="true">十一月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">十月 2017</i></a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
@@ -233,7 +305,7 @@
   <div class="widget">
     <h3 class="title">標籤雲</h3>
     <div class="content tag-cloud">
-        <a href="/tags/Callback/" style="font-size: 10px;">Callback</a> <a href="/tags/Closure/" style="font-size: 10px;">Closure</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        <a href="/tags/Callback/" style="font-size: 10px;">Callback</a> <a href="/tags/Closure/" style="font-size: 10px;">Closure</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/blog/" style="font-size: 20px;">blog</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a>
     </div>
   </div>
 
