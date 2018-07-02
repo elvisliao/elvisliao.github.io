@@ -172,7 +172,9 @@
     <div class="post-body post-content">
         <p>很常用的設定，記錄下來，也幫助一些小兄弟們。</p>
 <p>原先的VSCode shell非常的難用，如果熟悉git的話一定會知道git-bash.exe，可以使用linux的shell語法，非常的方便。</p>
-<h2 id="請參考以下的設定："><a href="#請參考以下的設定：" class="headerlink" title="請參考以下的設定："></a>請參考以下的設定：</h2><h1 id="打開設定-gt-使用者設定："><a href="#打開設定-gt-使用者設定：" class="headerlink" title="打開設定 -&gt; 使用者設定："></a>打開設定 -&gt; 使用者設定：</h1><p>依據發文時的版本，這個設定在VScode的左下角齒輪裡面，我第一次也是找很久才找到，接著就修改使用者設定setting.json<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"terminal.integrated.shell.windows"</span>: <span class="string">"YOUR:\\PATH\\TO\\bin\\bash.exe"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>請參考以下的設定：</p>
+<hr>
+<h1 id="打開設定-gt-使用者設定："><a href="#打開設定-gt-使用者設定：" class="headerlink" title="打開設定 -&gt; 使用者設定："></a>打開設定 -&gt; 使用者設定：</h1><p>依據發文時的版本，這個設定在VScode的左下角齒輪裡面，我第一次也是找很久才找到，接著就修改使用者設定setting.json<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"terminal.integrated.shell.windows"</span>: <span class="string">"YOUR:\\PATH\\TO\\bin\\bash.exe"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>設定完後重啟VScode<br>記得！一定要設Git目錄下的 bin\bash.exe，設成git-bash.exe的話，會獨立跳窗開啟，不會整合到VScode。</p>
 <h1 id="什麼-不知道Git目錄在哪"><a href="#什麼-不知道Git目錄在哪" class="headerlink" title="什麼?不知道Git目錄在哪"></a>什麼?不知道Git目錄在哪</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">where</span> git</span></span><br></pre></td></tr></table></figure>
 
