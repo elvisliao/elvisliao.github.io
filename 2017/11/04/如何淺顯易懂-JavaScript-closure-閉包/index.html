@@ -206,7 +206,6 @@
 <h1 id="常用實例"><a href="#常用實例" class="headerlink" title="常用實例"></a>常用實例</h1><p>常用實例首先就是上述講的避免在使用全域變數的地方上，第二點就是使用在迴圈賦值上。<br>不知道你有沒有那個經驗，有時候在一個迴圈賦值的時候一直給不上去，每次都存到了迴圈的最後一筆資料？<br>原因就是如果迴圈中有了異步回調，那它會先移到工作佇列中準備執行異部處理(setTimeout、AJAX等)，等它回來主執行緒執行時，迴圈早就跳出執行了，而且i還已經跑到了最後一個，所以接下來執行的動作，能獲取到的值全部都是錯的。<br>這時候如果使用closure的話，可以在迴圈每跑一次就執行一次的closure函式，將值記錄在裡面並且輸出，可以確保程式不會亂掉。</p>
 <p>至於實際的範例可以參考這邊：<a href="http://jsbin.com/lecinib/edit?js,console,output" target="_blank" rel="noopener">JSbin</a></p>
 <h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">閉包- JavaScript | MDN</a><br><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html" target="_blank" rel="noopener">從ES6開始的JavaScript學習生活</a><br><a href="https://pjchender.blogspot.tw/2017/05/javascript-closure.html" target="_blank" rel="noopener">深入淺出瞭解 JavaScript 閉包（closure）</a><br><a href="http://blog.darkthread.net/post-2009-03-11-js-this-and-closure.aspx" target="_blank" rel="noopener">Javascript - 淺談this與Closure</a></p>
-<p>fw</p>
 
     </div>
 
@@ -224,7 +223,7 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/01/30/Javascript-Callback-回調/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+        <a href="/2018/01/15/五分鐘帶你了解OOP v.s FP/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
     
         <a href="/2017/10/28/VSCode 整合git bash/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
@@ -320,7 +319,7 @@
         
     <div class="widget">
         <h3 class="title">分類</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/"><i class="fa" aria-hidden="true">Javascript</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/"><i class="fa" aria-hidden="true">Javascript</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">2</span></li></ul>
     </div>
 
 
@@ -328,7 +327,7 @@
         
     <div class="widget">
       <h3 class="title">彙整</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/"><i class="fa" aria-hidden="true">十一月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">十月 2017</i></a><span class="archive-list-count">2</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/"><i class="fa" aria-hidden="true">十一月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">十月 2017</i></a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
@@ -337,7 +336,7 @@
   <div class="widget">
     <h3 class="title">標籤雲</h3>
     <div class="content tag-cloud">
-        <a href="/tags/Callback/" style="font-size: 10px;">Callback</a> <a href="/tags/Closure/" style="font-size: 10px;">Closure</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/blog/" style="font-size: 20px;">blog</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a>
+        <a href="/tags/Callback/" style="font-size: 10px;">Callback</a> <a href="/tags/Closure/" style="font-size: 10px;">Closure</a> <a href="/tags/FP/" style="font-size: 10px;">FP</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a>
     </div>
   </div>
 

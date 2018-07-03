@@ -28,7 +28,7 @@
     <!--Title-->
 
 
-<title>標籤: Callback | Elvis&#39;s tech notes</title>
+<title>五分鐘帶你了解OOP v.s FP | Elvis&#39;s tech notes</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Elvis&#39;s tech notes" type="application/atom+xml">
@@ -131,35 +131,112 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <h3> 
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="五分鐘帶你了解OOP v.s FP">
+            
+	            五分鐘帶你了解OOP v.s FP
+            
+        </h1>
+        <div class="post-meta">
     
-        Callback 
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>Javascript</span>
+    </span>
     
     
-</h3>
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Javascript
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/01/15</span>
+    </span>
+</div>
 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/01/30/Javascript-Callback-回調/">Javascript Callback 回調</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年01月30日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                Callback(回調)是什麼？Callback 在英文是”call back”兩個單字的合體，你應該有聽過”Call me back”的英文，實際情況大概是有客戶打來電話給你，可是你正在電話中，客戶會留話說請你等會有空時再”回電”給...
-            </p> 
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>不管在哪個平台哪個語言，OOP、FP最常被拿來爭論的。</p>
+<p>這到底是什麼東西? 它就是一種Architectural design、設計原則，既然是原則，就沒有所謂的好壞之分，只有應用的場合之分、各有優缺點。</p>
+<p>好的，如果要結論我已經講完了，不到三十秒的時間。</p>
+<p>以下來簡單解釋一下，想更深入研究網路上很多資料：</p>
+<hr>
+<h2 id="OOP-Object-oriented-programming"><a href="#OOP-Object-oriented-programming" class="headerlink" title="OOP (Object-oriented programming)"></a>OOP (Object-oriented programming)</h2><p>首先，簡單了解一下幾個特性</p>
+<ul>
+<li>不斷地寫Object，如果Object的狀態或Method很常被用到，就把它變成class，讓class裡面的屬性跟方法，可以讓人使用，藉而完成一件任務。</li>
+<li>每個Object都有自己的data(properties)跟method(方法)</li>
+<li>一個Object是可以被其他的Object繼承的</li>
+</ul>
+<h2 id="FP-Functional-programming"><a href="#FP-Functional-programming" class="headerlink" title="FP (Functional programming)"></a>FP (Functional programming)</h2><p>FP注重的是，純粹的函式計算</p>
+<ul>
+<li>用static function去完成一件任務</li>
+<li>會盡量避免改變狀態和可變數據，在做完function任務時，input data都不會被改到，僅新增出一個output data而已</li>
+<li>藉由以上的function來完成一個程式</li>
+</ul>
+<p>來一點例子吧：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//OOP範例</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>（name）&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.salary = <span class="number">10000</span>; </span><br><span class="line">  &#125;</span><br><span class="line">  addSalary（amt）&#123;</span><br><span class="line">    <span class="keyword">this</span>.salary += amt </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  <span class="keyword">let</span> e1 = <span class="keyword">new</span> Employee(<span class="string">'Elvis'</span>);</span><br><span class="line">  e1.addSalary(<span class="number">2000</span>);</span><br><span class="line">	...</span><br><span class="line">  <span class="keyword">let</span> e500 = <span class="keyword">new</span> Employee(<span class="string">'Effy'</span>);</span><br><span class="line">  e500.addSalary(<span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+<p>假如使用OOP來設計員工加薪2000這件事情，它的好處是新增資料是非常簡單的，如果有第500個員工來上班，我只要實例化’Efyy’這個員工，並且幫她addSalary就好。</p>
+<p>那，如果現在是用FP來呈現呢？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//FP範例</span></span><br><span class="line"><span class="keyword">const</span> employee = [</span><br><span class="line">    [<span class="string">'Elvis'</span>,<span class="number">10000</span>],</span><br><span class="line">    [<span class="string">'Effy'</span>,<span class="number">10000</span>],</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> happyEmployees = employees.map(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">const</span> clone = e.slice();</span><br><span class="line">     clone[<span class="number">1</span>] += <span class="number">2000</span>;</span><br><span class="line">     <span class="keyword">return</span> clone;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>我們用二維陣列來儲存員工名單，並且建立了一個happyEmployees的加薪行為。這個happyEmployees中我們複製了原始的employee，並且加薪後，return出一個新的陣列，原始的data並不會改變到。</p>
+<p>它的好處呢，不改變原始值、並且我們可以在任何一個新的陣列後，再做其他的行為，例如：減薪、除薪(?)，如果以上例來說，可以從employee或是happyEmployees再做一次減薪的新動作。</p>
+<p>沒錯，閉包、Promise等等，都是類似FP的作法。</p>
+<h2 id="優缺點"><a href="#優缺點" class="headerlink" title="優缺點"></a>優缺點</h2><h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1>
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                轉載聲明：商業轉載請聯繫作者獲得授權，非商業轉載請註明出處
+            
         </div>
-    </article>
- 
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/01/30/Javascript-Callback-回調/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/11/04/如何淺顯易懂-JavaScript-closure-閉包/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
 
 
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
 
 
 
