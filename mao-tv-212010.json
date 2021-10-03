@@ -355,6 +355,14 @@
       ]
     },
     {
+      "key": "探探資源",
+      "name": "探探資源",
+      "type": 0,
+      "api": "https://apittzy.com/api.php/provide/vod/at/xml",
+      "playUrl": "",
+      "categories": ""
+    },
+    {
       "key": "追剧吧",
       "name": "追剧吧",
       "type": 0,
